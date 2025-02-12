@@ -1,0 +1,10 @@
+#container {
+    display: flex;
+}
+
+.cell {
+    border: solid black;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+}
