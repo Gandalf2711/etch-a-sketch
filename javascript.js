@@ -1,5 +1,5 @@
 const container = document.querySelector("#container");
-
+const btn = document.querySelector("button");
 
 function createGrid(columnNb) {
     for (let i = 0; i < columnNb; i++) {
@@ -12,16 +12,41 @@ function createGrid(columnNb) {
         }
         container.appendChild(column);
     }
-}
+};
 
-createGrid(16);
+function deleteChild() {
+    let child = container.lastElementChild;
+    while(child) {
+        container.removeChild(child);
+        child = container.lastElementChild;
+    }
+};
 
-const cell = document.querySelectorAll(".cell");
+btn.addEventListener("click", () => {
+    let valid = false;
+    let size = prompt("Please enter a number between 1 and 100");
 
-cell.forEach((item) => {
-    item.addEventListener("mouseover", function(e) {
-        e.target.style.background = "blue";
-    })
+    while (!valid) {
+        if (size < 0 || size > 100 || size == "" || isNaN(size)) {
+            size = prompt("Incorrect value! Please enter a number between 1 and 100");
+        } else {
+            valid = true;
+        }
+    };
+
+    deleteChild();
+    createGrid(size);
+
+    const cell = document.querySelectorAll(".cell");
+
+    cell.forEach((item) => {
+        item.addEventListener("mouseover", function(e) {
+            e.target.style.background = "blue";
+        })
+    });
 });
+
+
+
 
 
