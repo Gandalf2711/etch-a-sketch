@@ -17,10 +17,15 @@ body {
     border: 2px solid black;
 }
 
-#resize-btn {
-    background-color:#44c767;
+#btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#resize-btn,
+#reset-btn {
 	border-radius:28px;
-	border:1px solid #18ab29;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -28,14 +33,32 @@ body {
 	font-size:17px;
 	padding:16px 31px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#resize-btn {
+    background-color:#44c767;
+    border:1px solid #18ab29;
+    text-shadow:0px 1px 0px #2f6627;
+}
+
+#reset-btn {
+    background-color:#db594b;
+    border:1px solid #eb4034;
+    text-shadow:0px 1px 0px #eb4034;
 }
 
 #resize-btn:hover {
 	background-color:#5cbf2a;
 }
 
-#resize-btn.myButton:active {
+#reset-btn:hover {
+    background-color: #f01c05;
+}
+
+#resize-btn:active,
+#reset-btn:active {
 	position:relative;
 	top:1px;
 }
@@ -43,5 +66,4 @@ body {
 .cell {
     border: 1px solid black;
     box-sizing: border-box;
-    background-color: #ed4b11;
 }
