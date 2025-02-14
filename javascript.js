@@ -1,41 +1,17 @@
 const container = document.querySelector("#container");
-const btn = document.querySelector("button");
+const btn = document.querySelector("#resize-btn");
 
-function createGrid(columnNb) {
-    for (let i = 0; i < columnNb; i++) {
-        let column = document.createElement("div");
-        column.classList.add("column");
-        for (let j = 0; j < columnNb; j++) {
-            let row = document.createElement("div");
-            row.classList.add("cell");
-            column.appendChild(row);
-        }
-        container.appendChild(column);
+function createGrid(cellNb) {
+    container.innerHTML = "";
+    const cellSize = 640 / cellNb;
+
+    for (let i = 0; i < cellNb * cellNb; i++) {
+        let cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.style.width = `${cellSize}px`
+        cell.style.height = `${cellSize}px`;
+        container.appendChild(cell);
     }
-};
-
-function deleteChild() {
-    let child = container.lastElementChild;
-    while(child) {
-        container.removeChild(child);
-        child = container.lastElementChild;
-    }
-};
-
-btn.addEventListener("click", () => {
-    let valid = false;
-    let size = prompt("Please enter a number between 1 and 100");
-
-    while (!valid) {
-        if (size < 0 || size > 100 || size == "" || isNaN(size)) {
-            size = prompt("Incorrect value! Please enter a number between 1 and 100");
-        } else {
-            valid = true;
-        }
-    };
-
-    deleteChild();
-    createGrid(size);
 
     const cell = document.querySelectorAll(".cell");
 
@@ -44,9 +20,20 @@ btn.addEventListener("click", () => {
             e.target.style.background = "blue";
         })
     });
+};
+
+createGrid(16);
+
+btn.addEventListener("click", () => {
+    let size = prompt("Please enter a number between 1 and 100");
+    size = parseInt(size);
+
+    if (size && size > 0 && size < 100) {
+        createGrid(size);
+    } else {
+        alert("Please enter a valid number between 1 and 100");
+    };
 });
-
-
 
 
 
